@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+<body  class="flex flex-col min-h-screen bg-[[#FBF8EC]]">
+    <header class="fixed z-10 w-full">
+     <nav class="w-full fixed z-10 flex-1 bg-white border-b border-gray-200">
+  <div class="max-w-[1400px] mx-auto h-[72px] gap-[10px] flex items-center justify-between px-8 font-[Rubik]">
+    
+    <!-- Logo -->
+    <div class="flex items-center gap-3">
+      <img src="./img/Group.png" class="w-[40px] h-[32px]" />
+      <img src="./img/Северяночка.png" class="hidden sm:block w-[100px]" />
+    </div>
+
+    <!-- Catalog + Search -->
+    <div class="flex items-center gap-5 flex-1 max-w-[650px] mx-8">
+      
+      <!-- Catalog Button -->
+      <a href="./catalog.html" class="bg-[#70C05B] text-white flex items-center gap-3 px-4 h-[40px] ">
+  <img src="./img/menu.png" class="w-4 h-4" />
+  <span class="hidden lg:inline text-[16px]">Каталог</span>
+</a>
+
+      <!-- Search -->
+       <div class=" relative max-w-[400px] h-[40px] w-full">  
+        <div class="flex items-center flex-1 h-[40px] border border-gray-300 rounded px-4">
+        <input 
+        id="search"
+          type="text" 
+          placeholder="Найти товар"
+          class="flex-1 outline-none text-[14px]"
+        />
+        <img src="./img/search.png" class="w-4 h-4" />
+      </div>
+    <div id="searchcards" class="searchcards absolute overflow-y-scroll gap-2 p-2 flex flex-col bottom-0 max-w-[400px] max-h-[400px] translate-y-full w-full rounded-md bg-white shadow-lg">
+
+    </div>
+    </div>
+    
+
+    </div>
+
+    <!-- Right Side -->
+    <div class="hidden lg:flex items-center gap-[40px]">
+      
+      <div class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5">
+        <img src="./img/Shape (Stroke).png" class="w-6 h-6" />
+        <span>Избранное</span>
+      </div>
+
+      <div class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5">
+        <img src="./img/Frame 211.png" class="w-6 h-6" />
+        <span>Продукты</span>
+      </div>
+
+      <a href="./cart.html" class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5 relative">
+        <img src="./img/shopping-cart.png" class="w-6 h-6" />
+        <span>Корзина</span>
+        <span id="badge" class="absolute -top-1 -right-2 bg-orange-500 text-white text-[10px] px-1 rounded">
+          
+        </span>
+      </a>
+
+      <!-- Profile -->
+      <div class="flex items-center gap-4 ml-2">
+        <img src="./img/avatar.png" class="w-10 h-10 rounded-full" />
+        <span class="text-[16px] text-gray-700">Алексей</span>
+        <img src="./img/Shape down line.png" class="w-4 h-4" />
+      </div>
+
+    </div>
+  <img id="menu" src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" class="w-6 h-6 opacity-60 lg:hidden " />
+  </div>
+  <div class="relative lg:hidden">
+  
+  <div id="mobileMenu" 
+  class="absolute right-0 mt-2 w-[220px] bg-white shadow-lg rounded-md flex flex-col gap-3 p-4 z-50 
+transform -translate-y-5 opacity-0 pointer-events-none transition-all duration-300">
+
+    <div class="flex items-center gap-3">
+      <img src="./img/Shape (Stroke).png" class="w-6 h-6" />
+      <span class="text-[14px]">Избранное</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <img src="./img/Frame 211.png" class="w-6 h-6" />
+      <span class="text-[14px]">Продукты</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <img src="./img/shopping-cart.png" class="w-6 h-6" />
+      <span class="text-[14px]">Корзина</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <img src="./img/avatar.png" class="w-7 h-7 rounded-full" />
+      <span class="text-[14px]">Алексей</span>
+    </div>
+
+  </div>
+
+</div>
+</nav>
+
+    </header>
+    <div id="loading" class="w-full flex items-center justify-center bg-white z-20 h-screen">
+      <img class="max-w-[100px] w-full h-full" src="./assets/Rolling@1x-1.0s-200px-200px.svg" alt="png">
+    </div>
+    <main class="mainn flex-1 flex flex-col gap-[100px] bg-[#FBF8EC] pt-[72px] pb-[90px]">
+        <div class="w-full h-[200px] fon bg-[url('./img/Sliders.png')] bg-cover bg-center "></div>
+        <section class="section_one ">
+            <div class="max-w-[1400px] mx-auto h-[72px] flex items-end justify-between font-[Rubik]">
+               <h1 class="font-[Rubik] font-bold text-[36px] leading-[150%] tracking-normal">
+  Discounts
+</h1>
+              <div class="w-[168px] h-[40px] flex items-center  justify-center gap-2 px-2 rounded text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+  
+  <span class="text-[16px] leading-[150%]">
+    All
+  </span>
+
+  <span class="text-[18px] leading-none">
+    ›
+  </span>
+
+</div>
+            </div>
+        <div id="the_discounts"
+         class="sales max-w-[1400px] w-full mt-[50px] mx-auto grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px]">
+          
+           
+            
+            <!-- <div class="s_two  w-full bg-white max-w-[272px] h-auto min-h-[349px] flex flex-col rounded-[4px] overflow-hidden transition-all duration-200">
+                <div class="sale_img">
+                    <img class="w-full h-auto max-h-[160px]" src="./img/img (1).png" alt="png">
+                </div>
+                <div class="  mt-[10px]">
+                  
+                    <div class="cost max-w-[272px] mx-auto h-[28px] flex items-end justify-between  font-[Rubik]">
+                        <h1 class="font-[Rubik] font-bold text-[18px] leading-[150%] tracking-normal">44,50 ₽</h1>
+                        <p class=" min-w-[44px] h-[24px] font-[Rubik] font-normal text-[16px] leading-[24px] flex items-center md:text-[16px]">
+                            50,50₽
+                        </p>
+                    </div>
+                    
+                    <div class="diferemce max-w-[272px] mx-auto flex items-end justify-between  font-[Rubik]">
+                        <p class="font-[Rubik] text-[#BFBFBF] font-normal text-[13px] leading-[150%] tracking-normal">
+                            С картой
+                        </p>
+                         <p class="font-[Rubik] text-[#BFBFBF] font-normal text-[13px] leading-[150%] tracking-normal">
+                            Обычная
+                        </p>
+                    </div>
+
+                    <p class="font-[Rubik] mt-[8px] font-normal text-[17px] leading-[24px] tracking-normal
+
+       
+
+</div>
+                </div>
+            </div>
+          
+            <div class="s_four w-full bg-white max-w-[272px] h-auto min-h-[349px] flex flex-col rounded-[4px] overflow-hidden transition-all duration-200">
+    
+    <div class="sale_img">
+        <img class="w-full h-auto max-h-[160px]" src="./img/img (3).png" alt="png">
+    </div>
+
+    <div class="mt-[10px]">
+        
+        <div class="cost max-w-[272px] mx-auto h-[28px] flex items-end justify-between font-[Rubik]">
+            <h1 class="font-bold text-[18px] leading-[150%]">44,50 ₽</h1>
+            <p class="min-w-[44px] h-[24px] font-normal text-[16px] leading-[24px] flex items-center">
+                50,50₽
+            </p>
+        </div>
+
+        <div class="diferemce max-w-[272px] mx-auto flex items-end justify-between font-[Rubik]">
+            <p class="text-[#BFBFBF] text-[13px]">С картой</p>
+            <p class="text-[#BFBFBF] text-[13px]">Обычная</p>
+        </div>
+
+        <p class="font-[Rubik] mt-[8px] text-[17px] leading-[24px]">
+            Сосиски вареные МЯСНАЯ ИСТОРИЯ...
+        </p>
+
+        <div class="lastforone mt-[15px] flex flex-col max-w-[272px] mx-auto gap-[8px]">
+            <img src="./img/rating (3).png" alt="png">
+
+            <button class="
+            w-full max-w-[256px]
+            h-[40px]
+            flex items-center justify-center gap-[8px]
+            px-[8px]
+            border border-[#70C05B]
+            rounded-[4px]
+            bg-transparent
+            text-[#70C05B]
+            font-[Rubik]
+            text-[16px]
+            transition-all duration-200
+            hover:bg-[#FF6633] hover:text-white hover:border-[#FF6633]
+            ">
+                В корзину
+            </button>
+        </div>
+
+    </div>
+            </div> -->
+        </div>
+        </section>
+
+        <section class="section_two ">
+            <div class="max-w-[1400px] mx-auto h-[72px] flex items-end justify-between  font-[Rubik]">
+               <h1 class="font-[Rubik] font-bold text-[36px] leading-[150%] tracking-normal">News
+</h1>
+              <div class="w-[168px] h-[40px] flex items-center  justify-center gap-2 px-2 rounded text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+  
+  <span class="text-[16px] leading-[150%]">
+    All
+  </span>
+
+  <span class="text-[18px] leading-none">
+    ›
+  </span>
+
+</div>
+            </div>
+        <div id="news" class="sales max-w-[1400px] w-full mt-[50px] mx-auto grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px]">
+          
+        </div>
+        </section>
+
+        <section class="section_three ">
+            <div class="max-w-[1400px] mx-auto h-[72px] flex items-end justify-between font-[Rubik]">
+               <h1 class="font-[Rubik] font-bold text-[36px] leading-[150%] tracking-normal">
+  Was bought before
+</h1>
+              <div class="w-[168px] h-[40px] flex items-center  justify-center gap-2 px-2 rounded text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+  
+  <span class="text-[16px] leading-[150%]">
+    All
+  </span>
+
+  <span class="text-[18px] leading-none">
+    ›
+  </span>
+
+</div>
+            </div>
+        <div id="old" class="sales max-w-[1400px] w-full mt-[50px] mx-auto grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px]">
+          
+      
+        </div>
+        </section>
+
+        <section class="section_four">
+              <div class="max-w-[1400px] mx-auto h-[72px] flex items-end justify-between font-[Rubik]">
+               <h1 class="font-[Rubik] font-bold text-[36px] leading-[150%] tracking-normal">
+  Специальные предложения
+</h1>
+              </div>
+              <div class="special_d max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-[20px] mt-[40px]">
+
+    <div class="bg-[#FCD5BA] rounded-[5px] w-full h-[210px] flex justify-center items-center">
+        <div class="text flex flex-col gap-[10px]">
+            <h1 class="w-[258px] h-[72px] font-bold text-[24px] leading-[150%] tracking-[0%] color-[#414141] font-[Rubik]">
+                Оформите карту «Северяночка»
+            </h1>
+            <p class="w-[258px] h-[48px] font-normal text-[16px] leading-[150%] tracking-[0%] color-[#414141]">
+                И получайте бонусы при покупке в магазинах и на сайте
+            </p>
+        </div>
+
+        <div class="im hidden sm:hidden md:block">
+            <img class="w-[220px] h-[160px]" src="./img/Карта лояльности-10 1.png" alt="">
+        </div>
+    </div>
+
+    <div class="bg-[#E5FFDE] rounded-[5px] w-full h-[210px] flex justify-center items-center gap-[50px]">
+        <div class="text flex flex-col gap-[10px]">
+            <h1 class="w-[258px] h-[72px] font-bold text-[24px] leading-[150%] tracking-[0%] color-[#414141] font-[Rubik]">
+                Покупайте акционные товары
+            </h1>
+            <p class="w-[258px] h-[48px] font-normal text-[16px] leading-[150%] tracking-[0%] color-[#414141]">
+                И получайте вдвое больше бонусов
+            </p>
+        </div>
+
+        <div class="im hidden sm:hidden md:block">
+            <img src="./img/73 1.png" alt="">
+        </div>
+    </div>
+
+</div>
+        </section>
+
+        <section class="section_five flex flex-col gap-[42px]">
+                <div class="max-w-[1400px] w-[1400px] mx-auto h-[72px] flex items-end justify-between font-[Rubik]">
+               <h1 class="font-[Rubik] font-bold text-[36px] leading-[150%] tracking-normal">
+  Наши магазины
+</h1>
+              </div>
+              <div class="big_dforMaps max-w-[1400px] w-[1400px] mx-auto flex flex-col gap-[16px]">
+                <div class="buttons flex gap-[16px]">
+                    <button class="  w-[90px] h-[32px] font-[Rubik] font-normal text-[12px] leading-[150%] tracking-[0%]  text-center rounded-[4px]  bg-[#70C05B] text-white">п.Щельяюр</button>
+                    <button class="  w-[80px] h-[32px] font-[Rubik] font-normal text-[12px] leading-[150%] tracking-[0%]  text-center rounded-[4px] bg-[#F3F2F1] text-[#606060] hover:bg-[#70C05B] hover:text-white">д.Вертеп</button>
+                    <button class="  w-[100px] h-[32px] font-[Rubik] font-normal text-[12px] leading-[150%] tracking-[0%]  text-center rounded-[4px] bg-[#F3F2F1] text-[#606060] hover:bg-[#70C05B] hover:text-white">с.Краснобор</button>
+                    <button class="  w-[74px] h-[32px] font-[Rubik] font-normal text-[12px] leading-[150%] tracking-[0%]  text-center rounded-[4px] bg-[#F3F2F1] text-[#606060] hover:bg-[#70C05B] hover:text-white">д.Диюр</button>
+                </div>
+                <div class="max-w-[1400px] w-[1400px] max-h-[450px]  ">
+                    <iframe class="w-full " src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d383949.0147570351!2d69.3473508!3d41.252233700000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2s!4v1777385305652!5m2!1sru!2s"  height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+              </div>
+        </section>
+
+        <section class="section_six ">
+            <div class="max-w-[1400px] mx-auto h-[72px] flex items-end justify-between  font-[Rubik]">
+               <h1 class="font-[Rubik] font-bold text-[36px] leading-[150%] tracking-normal">Статьи
+</h1>
+              <div class="w-[168px] h-[40px] flex items-center  justify-center gap-2 px-2 rounded text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+  
+  <span class="text-[16px] leading-[150%]">
+    Все статьи
+  </span>
+
+  <span class="text-[18px] leading-none">
+    ›
+  </span>
+
+</div>
+            </div>
+            <div class="max-w-[1400px] mt-[50px] mx-auto flex items-center justify-between">
+                <div class="w-full bg-white max-w-[446px] h-[420px] max-h-[420px] flex flex-col rounded-[4px] overflow-hidden transition-all duration-200">
+                      <div class="sale_img">
+                    <img class="w-full h-auto max-h-[162px]" src="./img/image 5.png" alt="png">
+                </div>
+                <div class="mt-[10px] flex flex-col gap-[10px] px-4">
+                    <p class="font-[Rubik] font-normal text-[12px] leading-[150%] tracking-[0%] text-[#8F8F8F]">05.03.2021</p>
+                    <h1 class="w-[356px] h-[54px] font-[Rubik] font-bold text-[#414141] text-[18px] leading-[150%] tracking-[0%]">
+                        Режим использования масок и перчаток на территории магазинов
+                    </h1>
+                    <p class="w-[356px] h-[96px] font-rubik text-[#414141] font-normal text-[16px] leading-[150%] tracking-[0%]">
+Подробная информация о режимах использования масок и перчаток на территории магазинов "ЛЕНТА". Информация обновляется каждый будний день.
+                    </p>
+                    <button class="w-[150px] h-[40px] px-[8px] gap-[8px] 
+flex flex-row items-center justify-center 
+rounded-[4px] 
+bg-[#E5FFDE] text-[#70C05B]
+cursor-allowed opacity-50 
+font-rubik font-normal text-[16px] leading-[150%] tracking-[0%] hover:bg-[#70C05B] hover:text-white">Подробнее</button>
+                </div>
+                </div>
+
+                <div class="w-full bg-white max-w-[446px] h-[420px] max-h-[420px] flex flex-col rounded-[4px] overflow-hidden transition-all duration-200">
+                      <div class="sale_img">
+                    <img class="w-full h-auto max-h-[162px]" src="./img/image 5 (1).png" alt="png">
+                </div>
+                <div class="mt-[10px] flex flex-col gap-[10px] px-4">
+                    <p class="font-[Rubik] font-normal text-[12px] leading-[150%] tracking-[0%] text-[#8F8F8F]">05.03.2021</p>
+                    <h1 class="w-[356px] h-[54px] font-[Rubik] font-bold text-[#414141] text-[18px] leading-[150%] tracking-[0%]">
+                        Весеннее настроение для каждой
+                    </h1>
+                    <p class="w-[356px] h-[96px] font-rubik text-[#414141] font-normal text-[16px] leading-[150%] tracking-[0%]">
+8 Марта – это не просто Международный женский день, это ещё день тюльпанов, приятных сюрпризов и праздничных тёплых пожеланий.
+                    </p>
+                    <button class="w-[150px] h-[40px] px-[8px] gap-[8px] 
+flex flex-row items-center justify-center 
+rounded-[4px] 
+bg-[#E5FFDE] text-[#70C05B]
+cursor-allowed opacity-50 
+font-rubik font-normal text-[16px] leading-[150%] tracking-[0%] hover:bg-[#70C05B] hover:text-white">Подробнее</button>
+                </div>
+
+                </div>
+
+                <div class="w-full bg-white max-w-[446px] h-[420px] max-h-[420px] flex flex-col rounded-[4px] overflow-hidden transition-all duration-200">
+                      <div class="sale_img">
+                    <img class="w-full h-auto max-h-[162px]" src="./img/image 5 (2).png" alt="png">
+                </div>
+                <div class="mt-[10px] flex flex-col gap-[10px] px-4">
+                    <p class="font-[Rubik] font-normal text-[12px] leading-[150%] tracking-[0%] text-[#8F8F8F]">05.03.2021</p>
+                    <h1 class="w-[356px] h-[54px] font-[Rubik] font-bold text-[#414141] text-[18px] leading-[150%] tracking-[0%]">
+                    ЗОЖ или ФАСТФУД. А вы на чьей стороне? Голосуем!
+                    </h1>
+                    <p class="w-[356px] h-[96px] font-rubik text-[#414141] font-normal text-[16px] leading-[150%] tracking-[0%]">
+Голосуйте за любимые категории, выбирайте категорию-победителя в мобильном приложении и получайте кешбэк 10% баллами в апреле!
+                    </p>
+                    <button class="w-[150px] h-[40px] px-[8px] gap-[8px] 
+flex flex-row items-center justify-center 
+rounded-[4px] 
+bg-[#E5FFDE] text-[#70C05B]
+cursor-allowed opacity-50 
+font-rubik font-normal text-[16px] leading-[150%] tracking-[0%] hover:bg-[#70C05B] hover:text-white">Подробнее</button>
+                </div>
+
+                </div>
+            </div>
+       
+        </section>
+        
+    </main>
+    <footer class="bg-[#F9F4E2] bg-[url('./img/bg.png')] max-h-[126px] h-[126px] bg-cover bg-center bg-no-repeat w-full py-6 px-8 ">
+  <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6">
+    
+    <div class="flex-shrink-0">
+      <div class="w-16 h-16 rounded-full flex items-center justify-center">
+        <img src="./img/logo.png" alt="">
+      </div>
+    </div>
+
+    <nav class="flex flex-wrap items-center gap-6 text-sm text-gray-700 font-medium">
+      <a href="#" class="hover:text-orange-500 transition-colors">О компании</a>
+      <a href="#" class="hover:text-orange-500 transition-colors">Контакты</a>
+      <a href="#" class="hover:text-orange-500 transition-colors">Вакансии</a>
+      <a href="#" class="hover:text-orange-500 transition-colors">Статьи</a>
+      <a href="#" class="hover:text-orange-500 transition-colors">Политика обработки персональных данных</a>
+    </nav>
+
+    <div class="flex items-center gap-6">
+      
+      <div class="flex items-center gap-3">
+        <a href="#" class="w-6 h-6  rounded-sm"><img src="./img/Union.png" alt=""></a> <a href="#" class="w-6 h-6  rounded-sm"><img src="./img/Vector.png" alt=""></a> <a href="#" class="w-6 h-6  rounded-sm"><img src="./img/Subtract.png" alt=""></a> <a href="#" class="w-6 h-6  rounded-sm"><img src="./img/vect.png" alt=""></a> </div>
+
+      <div class="flex flex-col items-end gap-1">
+        <div class="flex items-center gap-2 font-bold text-lg text-gray-800">
+          <span>📞</span>
+          <span>8 800 777 33 33</span>
+        </div>
+        <div class="text-xs text-gray-500 flex items-center gap-1">
+          Дизайн <span><img src="./img/logo-zasovskiy-small-black.png" alt=""></span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+
+
+<script src="./js/products-data/products-data/products-data.js"></script>
+<script src="./js/main.js"></script>
+</body>
+</html>
