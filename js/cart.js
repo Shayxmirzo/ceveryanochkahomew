@@ -6,9 +6,12 @@ window.addEventListener("load", function(){
 let search = document.getElementById("search")
 let searchcards = document.getElementById("searchcards")
 let searchExist = false;
+
 searchExist ? searchcards : searchcards.classList.add("hidden")
+
 search.addEventListener("input", function(e) {
   let searchValue = e.target.value;
+
   if(searchValue){
     searchExist = true;
     searchcards.classList.remove("hidden")
@@ -16,21 +19,22 @@ search.addEventListener("input", function(e) {
     searchExist = false;
     searchcards.classList.add("hidden")
   }
-let searchProducts = products.filter((el) => el.name.toLowerCase().includes(searchValue.toLowerCase()))
-searchcards.innerHTML = "";
-searchProducts.map((el) => {
-  searchcards.innerHTML += `
+
+  let searchProducts = products.filter((el) =>
+    el.name.toLowerCase().includes(searchValue.toLowerCase())
+  )
+
+  searchcards.innerHTML = "";
+
+  searchProducts.map((el) => {
+    searchcards.innerHTML += `
 <div class="w-full shrink-0 h-[80px] border rounded-[15px] overflow-hidden">
     <a href="../Single_pages/singlep.html?id=${el.id}" class="w-full flex items-center gap-5 block">
         <div class="w-[80px] h-[80px] flex-shrink-0 overflow-hidden rounded-[12px] bg-gray-100">
-    <img
-        class="w-full h-full object-cover object-center"
-        src="${el.images[0]}"
-        alt=""
-    >
-</div>
+            <img class="w-full h-full object-cover object-center" src="${el.images[0]}" alt="">
+        </div>
 
-        <div class="">
+        <div>
             <h1 class="text-[20px] font-bold">${el.name}</h1>
             <p class="line-clamp-1 text-[16px]">${el.description}</p>
             <p class="text-gray-600 text-[14px] font-bold">${el.rating} ⭐</p>
@@ -38,20 +42,80 @@ searchProducts.map((el) => {
     </a>
 </div>
 `;
+  })
 })
-})
 
-
-
+let carTitle = document.getElementById("carTitle")
 let main = document.querySelector(".mainn");
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-renderCart();
+let budge = document.getElementById("budge");
+let bige = document.getElementById("bige");
+let selectAll = document.getElementById("selectAll");
+let deleteBtn = document.getElementById("deleteSelected");
+
+// FIX: keep old selection
+cart = cart.map(item => ({
+  ...item,
+  selected: item.selected ?? false
+}));
+
+function updateBadge() {
+  budge.textContent = cart.length;
+
+  if (cart.length === 0) {
+    budge.style.display = "none";
+  } else {
+    budge.style.display = "flex";
+  }
+}
+
+function updateBige() {
+  bige.textContent = cart.length;
+
+  if (cart.length === 0) {
+    bige.style.display = "none";
+  } else {
+    bige.style.display = "flex";
+  }
+}
+
+updateBadge()
+updateBige()
+renderCart()
+
+// SELECT ALL
+if (selectAll) {
+  selectAll.addEventListener("change", function () {
+    let isChecked = this.checked;
+
+    cart = cart.map(item => ({
+      ...item,
+      selected: isChecked
+    }));
+
+    saveCart();
+    renderCart();
+  });
+}
+
+// DELETE SELECTED
+if (deleteBtn) {
+  deleteBtn.addEventListener("click", function () {
+    cart = cart.filter(item => !item.selected);
+
+    saveCart();
+    renderCart();
+    updateBadge();
+    updateBige();
+  });
+}
 
 function renderCart() {
   main.innerHTML = "";
 
   if (cart.length === 0) {
+    carTitle.classList.add("hidden");
     main.innerHTML = `
       <div class="text-center mt-20 text-[28px] font-bold text-gray-500">
         Cart is empty 🛒
@@ -60,64 +124,73 @@ function renderCart() {
     return;
   }
 
+  carTitle.classList.remove("hidden");
+
   cart.forEach(item => {
     let product = products.find(el => el.id == item.id);
 
     if (product) {
       main.innerHTML += `
-        <div class="max-w-[1300px] w-full mx-auto bg-white p-5 rounded-xl shadow flex gap-5 items-center overflow-hidden">
+        <div class="max-w-[1400px] w-full mx-auto max-h-[200px] bg-white p-5 rounded-xl shadow flex gap-5 items-center overflow-hidden">
 
-          <!-- Image -->
-          <div class="w-[180px] h-[180px] shrink-0 rounded-lg overflow-hidden bg-gray-100">
-            <img 
-              src="${product.images[0]}" 
-              class="w-full h-full object-cover"
-            >
+          <div class="w-[180px] h-[180px] shrink-0 rounded-lg relative overflow-hidden bg-gray-100">
+            <img src="${product.images[0]}" class="w-full h-full object-cover">
+
+            <div class="checks absolute top-0 left-0 m-2.5">
+              <input
+                type="checkbox"
+                ${item.selected ? "checked" : ""}
+                onchange="toggleSelect(${product.id})"
+                class="appearance-none w-6 h-6 rounded border-2 border-white bg-transparent cursor-pointer
+                checked:bg-green-500 checked:border-green-500
+                checked:before:content-['✓']
+                checked:before:text-white
+                checked:before:text-sm
+                checked:before:flex
+                checked:before:items-center
+                checked:before:justify-center"
+              >
+            </div>
           </div>
 
-          <!-- Info -->
           <div class="flex-1 min-w-0">
-            <h1 class="text-[24px] font-bold line-clamp-1">
-              ${product.name}
-            </h1>
-
-            <p class="text-gray-500 line-clamp-2 mt-2 text-[16px]">
-              ${product.description}
-            </p>
-
+            <h1 class="text-[24px] font-bold">${product.name}</h1>
+            <p class="text-gray-500">${product.description}</p>
             <p class="text-orange-500 font-bold text-[24px] mt-3">
               ${product.price} $
             </p>
           </div>
 
-          <!-- Controls -->
-          <div class="flex items-center gap-3 shrink-0">
+          <div class="flex items-center gap-3">
             <button onclick="minus(${product.id})"
-              class="w-[45px] h-[45px] bg-orange-500 text-white rounded-lg text-[22px]">
-              -
-            </button>
+              class="w-[45px] h-[45px] bg-orange-500 text-white rounded-lg">-</button>
 
-            <span class="font-bold text-[24px] min-w-[30px] text-center">
+            <span class="font-bold text-[24px]">
               ${item.quantity}
             </span>
 
             <button onclick="plus(${product.id})"
-              class="w-[45px] h-[45px] bg-green-500 text-white rounded-lg text-[22px]">
-              +
-            </button>
+              class="w-[45px] h-[45px] bg-green-500 text-white rounded-lg">+</button>
           </div>
 
         </div>
       `;
     }
   });
+
+  if (selectAll) {
+    selectAll.checked = cart.length > 0 && cart.every(item => item.selected);
+  }
 }
+
 function plus(id) {
   let item = cart.find(el => el.id == id);
   item.quantity++;
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   renderCart();
+  updateBadge();
+  updateBige();
 }
 
 function minus(id) {
@@ -129,6 +202,26 @@ function minus(id) {
     cart = cart.filter(el => el.id != id);
   }
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+  saveCart();
   renderCart();
+  updateBadge();
+  updateBige();
+}
+
+function toggleSelect(id) {
+  cart = cart.map(item => {
+    if (item.id == id) {
+      item.selected = !item.selected;
+    }
+    return item;
+  });
+
+  saveCart();
+  renderCart();
+  updateBadge();
+  updateBige();
+}
+
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
