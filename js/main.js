@@ -297,6 +297,11 @@ search.addEventListener("input", function(e) {
   }
 let searchProducts = products.filter((el) => el.name.toLowerCase().includes(searchValue.toLowerCase()))
 searchcards.innerHTML = "";
+if(searchProducts.length === 0){
+  searchcards.innerHTML = `<p class="text-center py-1 font-bold">Sorry! Product not found</p>`
+}else{
+  
+}
 searchProducts.map((el) => {
   searchcards.innerHTML += `
 <div class="w-full shrink-0 h-[80px] border rounded-[15px] overflow-hidden">
