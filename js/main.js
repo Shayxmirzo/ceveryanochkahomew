@@ -29,6 +29,14 @@ function renderProducts(content, data,) {
               ? `<div class="absolute bottom-0 w-[60px] flex text-white font-bold justify-center items-center m-2.5 rounded-[5px] h-[40px] bg-[#FF6633]">${el.discount} %</div>`
               : ''
             }
+             <div 
+ onclick="toggleFavorite(event, ${el.id})"
+  class="absolute top-2 right-2 w-[34px] h-[34px] bg-white/90 backdrop-blur shadow-md rounded-[6px] flex items-center justify-center hover:scale-110 transition"
+  data-fav="${el.id}"
+  >
+    <img class="fav-icon grayscale" src="../assets/images/favourites.svg" alt="png">
+
+  </div>
           </a>
 
           <div class="m-2.5">
@@ -72,6 +80,7 @@ function renderProducts(content, data,) {
         </div>
       `;
     });
+    
 }
 renderProducts(mapProduce, products);
 function addToCart(id) {
@@ -145,6 +154,14 @@ updateBadge();
               ? `<div class="absolute bottom-0 w-[60px] flex text-white font-bold justify-center items-center m-2.5 rounded-[5px] h-[40px] bg-[#FF6633]">${el.discount} %</div>`
               : ''
             }
+            <div 
+ onclick="toggleFavorite(event, ${el.id})"
+  class="absolute top-2 right-2 w-[34px] h-[34px] bg-white/90 backdrop-blur shadow-md rounded-[6px] flex items-center justify-center hover:scale-110 transition"
+  data-fav="${el.id}"
+  >
+    <img class="fav-icon grayscale" src="../assets/images/favourites.svg" alt="png">
+
+  </div>
           </a>
 
           <div class="m-2.5">
@@ -209,6 +226,14 @@ function renderProductsnodisatleast(content, data,) {
               ? `<div class="absolute bottom-0 w-[60px] flex text-white font-bold justify-center items-center m-2.5 rounded-[5px] h-[40px] bg-[#FF6633]">${el.discount} %</div>`
               : ''
             }
+            <div 
+ onclick="toggleFavorite(event, ${el.id})"
+  class="absolute top-2 right-2 w-[34px] h-[34px] bg-white/90 backdrop-blur shadow-md rounded-[6px] flex items-center justify-center hover:scale-110 transition"
+  data-fav="${el.id}"
+  >
+    <img class="fav-icon grayscale" src="../assets/images/favourites.svg" alt="png">
+
+  </div>
           </a>
 
           <div class="m-2.5">
@@ -254,18 +279,6 @@ function renderProductsnodisatleast(content, data,) {
     });
 }
 renderProductsnodisatleast(mapOlds, products)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 let getMenu = document.getElementById("menu");
@@ -324,3 +337,12 @@ searchProducts.map((el) => {
 `;
 })
 })
+
+
+
+function toggleFavorite(event, id) {
+  event.preventDefault();
+  event.stopPropagation();
+
+}
+
