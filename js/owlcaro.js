@@ -1,13 +1,13 @@
 $(document).ready(function () {
-    const $carousel = $(".owl-carousel");
+  $(".owl-carousel").owlCarousel({
+    items: 1,
+    loop: true,
+ 
 
-    if ($carousel.length) {
-        $carousel.owlCarousel({
-            loop: true,
-            margin: 10,
-            nav: true,
-            items: 1,
-            
-        });
-    }
+    autoplay: true,
+    autoplayTimeout: 4000,
+    autoplayHoverPause: true,
+
+    smartSpeed: 1000
+  });
 });

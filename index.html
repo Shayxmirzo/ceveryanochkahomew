@@ -20,6 +20,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 </head>
 <body  class="flex flex-col min-h-screen bg-[#FBF8EC]">
+<div id="modal" class="fixed hidden z-30 flex justify-center items-center w-full h-screen bg-[orangered]/60">
+  <div id="modalContent" class="max-w-[500px] w-full bg-[white] rounded-[40px] p-5 border">
+    <h2 class="py-5 text-center text-[30px] font-bold">Log in</h2>
+    <form id="formModal" class="w-full gap-4 flex flex-col " action="">
+      <input required class="border border-[orangered] h-[50px] px-5 w-full rounded-[10px]" type="text" placeholder="Name">
+      <input required class="border border-[orangered] h-[50px] px-5 w-full rounded-[10px]" type="text" placeholder="Image URL">
+      <input required class="border border-[orangered] h-[50px] px-5 w-full rounded-[10px]" type="text" placeholder="Number">
+      <button class="bg-[orangered] h-[50px] text-white rounded-[10px] px-4">Log in</button>
+    </form>
+  </div>
+</div>
+
     <header class="fixed z-10 w-full">
      <nav class="w-full fixed z-10 flex-1 bg-white border-b border-gray-200">
   <div class="max-w-[1400px] mx-auto h-[72px] gap-[10px] flex items-center justify-between px-8 font-[Rubik]">
@@ -80,10 +92,9 @@
       </a>
 
       <!-- Profile -->
-      <div class="flex items-center gap-4 ml-2">
-        <img src="./img/avatar.png" class="w-10 h-10 rounded-full" />
-        <span class="text-[16px] text-gray-700">Алексей</span>
-        <img src="./img/Shape down line.png" class="w-4 h-4" />
+      <div id="profileClick" class="flex items-center gap-4 ml-2">
+        <img id="profileimg" src="./img/user.png" class="w-9 h-9 rounded-full" />
+        <span id="profilename" class="text-[16px] text-gray-700">Log in</span>
       </div>
 
     </div>
@@ -487,5 +498,8 @@ font-rubik font-normal text-[16px] leading-[150%] tracking-[0%] hover:bg-[#70C05
 <script src="./js/products-data/products-data/products-data.js"></script>
 <script src="./js/owlcaro.js"></script>
 <script src="./js/main.js"></script>
+<script src="./js/profile.js"></script>
 </body>
 </html>
+
+

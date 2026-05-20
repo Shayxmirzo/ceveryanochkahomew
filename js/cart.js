@@ -93,6 +93,8 @@ let discountnum = document.getElementById("Discountnum");
 let totalElement = document.getElementById("Total");
 let thePricesh = document.getElementById("thePricesh")
 let promoDiscount = 0;
+let promo = document.getElementById("promo")
+let promocheck = document.getElementById("promo-check")
 function updatePriceBlock() {
 
   if (cart.length === 0) {
@@ -213,9 +215,9 @@ function renderCart() {
 
       main.innerHTML += `
 
-        <div class="max-w-[1400px] w-full mx-auto max-h-[200px] bg-white p-5 rounded-xl shadow flex gap-3 items-center overflow-hidden">
+        <div class="max-w-[900px] w-full max-h-[140px] bg-white p-5 rounded-xl shadow flex gap-3 items-center overflow-hidden">
 
-          <div class="w-[180px] h-[180px] shrink-0 rounded-lg relative overflow-hidden bg-gray-100">
+          <div class="w-[140px] h-[140px] shrink-0 rounded-lg relative overflow-hidden bg-gray-100">
 
             <img 
               src="${product.images[0]}" 
@@ -244,7 +246,7 @@ function renderCart() {
 
           <div class="flex-1 min-w-0">
 
-            <h1 class="text-[24px] font-bold">
+            <h1 class="text-[20px] font-bold">
               ${product.name}
             </h1>
 
@@ -252,17 +254,32 @@ function renderCart() {
               ${product.description}
             </p>
 
-            <p class="text-orange-500 font-bold text-[24px] mt-3">
-              ${product.price} $
-            </p>
+           <div class="mt-3 flex items-center gap-3 flex-wrap">
 
+  ${product.discount > 0 ? `
+       <p class="text-gray-400 line-through text-[18px]">
+          ${product.price} $
+        </p>
+
+        <p class="text-orange-500 font-bold text-[24px]">
+         ${product.price * (100 - product.discount)/100} $
+        </p>
+     `: `
+        <p class="text-orange-500 font-bold text-[24px]">
+          ${product.price} $
+        </p>
+      `
+
+  }
+
+</div>
           </div>
 
-          <div class="flex items-center gap-1 min-w-[170px] justify-center">
+          <div class="flex ml-[0px] items-center gap-1 min-w-[100px] justify-center">
 
             <button 
               onclick="minus(${product.id})"
-              class="w-[45px] h-[45px] bg-orange-500 text-white rounded-lg cursor-pointer"
+              class="w-[38px] h-[38px] bg-orange-500 text-white rounded-lg cursor-pointer"
             >
               -
             </button>
@@ -273,7 +290,7 @@ function renderCart() {
 
             <button 
               onclick="plus(${product.id})"
-              class="w-[45px] h-[45px] bg-green-500 text-white cursor-pointer rounded-lg"
+              class="w-[38px] h-[38px] bg-green-500 text-white cursor-pointer rounded-lg"
             >
               +
             </button>
@@ -282,7 +299,7 @@ function renderCart() {
 
           <div class="w-[100px] text-right">
 
-            <h1 class="text-[30px] font-bold max-w-[200px] w-full">
+            <h1 class="text-[24px] font-bold max-w-[200px] w-full">
               ${finalPrice.toFixed(1)} $
             </h1>
 
@@ -393,3 +410,12 @@ function calculatePrices() {
   discountnum.textContent = discount.toFixed(1) + " $";
   totalElement.textContent = (sum - discount).toFixed(1) + " $";
 }
+promocheck.addEventListener("click", function(){
+if(promo.value === "hello" || "12345"){
+  promoDiscount = 200;
+}else{
+  promoDiscount = 0;
+}
+calculatePrices(0, 0)
+})
+

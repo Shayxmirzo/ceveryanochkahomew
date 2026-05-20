@@ -14,16 +14,24 @@ if (product) {
   onep.innerHTML = `
 <div class="flex gap-6 w-full">
 
-  <div class="flex flex-col gap-2">
-    <img src="../img/${product.images[0]}" class="w-[70px] h-[70px] object-cover border rounded cursor-pointer transition duration-300 hover:scale-130" />
-    <img src="../img/${product.images[1]}" class="w-[70px] h-[70px] object-cover border rounded cursor-pointer transition duration-300 hover:scale-130" />
-    <img src="../img/${product.images[2]}" class="w-[70px] h-[70px] object-cover border rounded cursor-pointer transition duration-300 hover:scale-130" />
-    <img src="../img/${product.images[3]}" class="w-[70px] h-[70px] object-cover border rounded cursor-pointer transition duration-300 hover:scale-130" />
+  <div id="singleimg" class="flex flex-col gap-2">
+ ${
+  product.images.map((el) => {
+    return `
+      <img 
+        class="w-[70px] h-[70px] object-cover border rounded cursor-pointer transition duration-300 hover:scale-110" 
+        src="../img/${el}" 
+        alt=""
+      >
+    `;
+  }).join("")
+}
+
   </div>
 
   <!-- Main Image -->
   <div class="flex-1 relative h-[500px] border rounded-lg overflow-hidden">
-    <img src="../img/${product.images[0]}" 
+    <img id="mainImg" src="../img/${product.images[0]}" 
          class="w-full h-full object-cover" />
          <div class="absolute bottom-0 w-[60px]  flex text-white font-bold justify-center items-center m-2.5 rounded-[5px] h-[40px] bg-[#FF6633]">${product.discount} %</div>
   </div>
@@ -57,6 +65,12 @@ if (product) {
 } else {
   onep.innerHTML = `<h1>Product not found</h1>`;
 }
-
-
-let 
+let singleimg = document.getElementById("singleimg")
+let mainImg = document.getElementById("mainImg")
+singleimg.addEventListener("click", function(e){
+  if(e.target.src === undefined){
+    return
+  }else{
+    mainImg.src = e.target.src
+  }
+})
