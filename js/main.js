@@ -2,6 +2,7 @@ let mapProduce = document.getElementById("the_discounts");
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 let isExist = false;
 let badge = document.getElementById("badge")
+let mainn = document.getElementById("mainner")
 function updateBadge() {
   badge.textContent = cart.length;
 
@@ -293,6 +294,8 @@ getMenu.addEventListener("click", function () {
 let loading = document.getElementById("loading")
 window.addEventListener("load", function(){
   loading.classList.add("hidden")
+  mainn.classList.remove("hidden")
+  
 })
 
 let search = document.getElementById("search")
@@ -346,3 +349,25 @@ function toggleFavorite(event, id) {
 
 }
 
+
+
+// === CATALOG PART === //
+
+let catalogBtn = document.getElementById("catalogBtn");
+let catalogPopup = document.getElementById("catalogPopup")
+let categories = document.getElementById("categories")
+
+categoriesData.map((el) =>{
+  categories.innerHTML += `
+  <a href="../Single_pages/catalogPages.html?name=${el.name}" class="flex items-center gap-2 hover:text-[orangered] duration-300 hover:text-[18px] font-bold">
+          <div class="w-[55px] h-[55px] rounded-full overflow-hidden duration-300 ">
+            <img class="w-full h-full object-cover" src="${el.imageUrl}" alt="">
+          </div>
+          ${el.name}
+        </a>
+  `
+})
+
+catalogBtn.addEventListener("click", function(){
+  catalogPopup.classList.toggle("-translate-y-[100%]")
+})
