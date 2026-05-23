@@ -18,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
 <body  class="flex flex-col min-h-screen bg-[[#FBF8EC]]">
-    <header class="">
+    <header class="z-15">
      <nav class="w-full bg-white border-b border-gray-200">
   <div class="max-w-[1400px] mx-auto h-[72px] gap-[10px] flex items-center justify-between px-8 font-[Rubik]">
     
@@ -32,49 +32,55 @@
     <div class="flex items-center gap-5 flex-1 max-w-[650px] mx-8">
       
       <!-- Catalog Button -->
-      <a href="./index.html" class="bg-[#70C05B] text-white flex items-center gap-3 px-4 h-[40px] rounded">
-  <img src="./img/menu.png" class="w-4 h-4" />
-  <span class="text-[16px]">Главная</span>
-</a>
+      <div class="bg-[#70C05B] text-white flex items-center gap-3 px-4 h-[40px] rounded">
+  <img id="catalogBtn" src="./img/menu.png" class="w-4 h-4" />
+  <span class="text-[16px]">Каталог</span>
+      </div>
 
-      <!-- Search -->
-      <div class="flex items-center flex-1 h-[40px] border border-gray-300 rounded px-4">
+       <!-- Search -->
+       <div class=" relative max-w-[400px] h-[40px] w-full">  
+        <div class="flex items-center flex-1 h-[40px] border border-gray-300 rounded px-4">
         <input 
+        id="search"
           type="text" 
           placeholder="Найти товар"
           class="flex-1 outline-none text-[14px]"
         />
         <img src="./img/search.png" class="w-4 h-4" />
       </div>
+    <div id="searchcards" class="searchcards absolute overflow-y-scroll gap-2 p-2 flex flex-col bottom-0 max-w-[400px] max-h-[400px] translate-y-full w-full rounded-md bg-white shadow-lg">
+
+    </div>
+    </div>
+    
 
     </div>
 
     <!-- Right Side -->
-    <div class="flex items-center gap-[40px]">
+    <div class="hidden lg:flex items-center gap-[40px]">
       
-      <div class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5">
+      <a href="./thefav.html" class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5">
         <img src="./img/Shape (Stroke).png" class="w-6 h-6" />
         <span>Избранное</span>
-      </div>
+    </a>
 
       <div class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5">
         <img src="./img/Frame 211.png" class="w-6 h-6" />
         <span>Продукты</span>
       </div>
 
-      <div class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5 relative">
+      <a href="./cart.html" class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5 relative">
         <img src="./img/shopping-cart.png" class="w-6 h-6" />
         <span>Корзина</span>
-        <span class="absolute -top-1 -right-2 bg-orange-500 text-white text-[10px] px-1 rounded">
-          1
+        <span id="badge" class="absolute -top-1 -right-2 bg-orange-500 text-white text-[10px] px-1 rounded">
+          
         </span>
-      </div>
+      </a>
 
       <!-- Profile -->
-      <div class="flex items-center gap-4 ml-2">
-        <img src="./img/avatar.png" class="w-10 h-10 rounded-full" />
-        <span class="text-[16px] text-gray-700">Алексей</span>
-        <img src="./img/Shape down line.png" class="w-4 h-4" />
+      <div id="profileClick" class="flex items-center gap-4 ml-2">
+        <img id="profileimg" src="./img/user.png" class="w-9 h-9 rounded-full" />
+        <span id="profilename" class="text-[16px] text-gray-700">Log in</span>
       </div>
 
     </div>
@@ -83,100 +89,16 @@
 </nav>
 
     </header>
+    <div id="catalogPopup" class="pt-[100px] top-0 duration-500 absolute fixed z-5 w-full bg-[white] border-b py-6 -translate-y-[100%]">
+      <div id="categories" class="container mx-auto grid gap-5 grid-cols-4 ">
+        
+      </div>
+    </div>
     <main class="main flex-1 flex flex-col gap-[120px] bg-[#FBF8EC] pt-[20px] pb-[90px]">
-        <section class="section_onec ">
-            <div class="max-w-[1400px] mx-auto mt-[20px] text-[14px] text-gray-500 font-rubik">
-  <a href="./index.html" class="hover:text-black">Главная</a>
-  <span class="mx-2">›</span>
-  <span class="text-black">Каталог</span>
-</div>
-<div class="catalog_resources mt-[30px] flex flex-col gap-[60px]">
-   <div class="max-w-[1400px] w-[1400px] mx-auto  max-h-[96px] h-[96px] flex items-end justify-between  font-[Rubik]">
-               <h1 class="font-[Rubik] font-bold text-[64px] leading-[150%] tracking-normal">Каталог
-</h1>
-            </div>
-</div>
-<div class="max-w-[1400px] mx-auto grid grid-cols-3 gap-[20px] auto-rows-[140px]">
-
-  <div class="col-span-2 row-span-2 relative rounded-[10px] overflow-hidden">
-    <img src="./img/milk.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-green-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Молоко, сыр, яйцо</p>
-  </div>
-
-  <div class="row-span-1 relative rounded-[10px] overflow-hidden">
-    <img src="./img/bread.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-orange-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Хлеб</p>
-  </div>
-
-  <div class="row-span-2 relative rounded-[10px] overflow-hidden">
-    <img src="./img/vegetables.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-green-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Фрукты и овощи</p>
-  </div>
-
-  <div class="row-span-1 relative rounded-[10px] overflow-hidden">
-    <img src="./img/frozen.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-green-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Замороженные продукты</p>
-  </div>
-
-  <div class="row-span-1 relative rounded-[10px] overflow-hidden">
-    <img src="./img/drinks.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-green-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Напитки</p>
-  </div>
-
-  <div class="row-span-1 relative rounded-[10px] overflow-hidden">
-    <img src="./img/sweets.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-green-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Кондитерские изделия</p>
-  </div>
-
-  <div class="row-span-1 relative rounded-[10px] overflow-hidden">
-    <img src="./img/cofe.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-green-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Чай, кофе</p>
-  </div>
-
-  <div class="row-span-1 relative rounded-[10px] overflow-hidden">
-    <img src="./img/balakaya.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-green-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Бакалея</p>
-  </div>
-
-  <div class="row-span-1 relative rounded-[10px] overflow-hidden">
-    <img src="./img/healt.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-green-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Здоровое питание</p>
-  </div>
-
-  <div class="col-span-2 row-span-1 relative rounded-[10px] overflow-hidden">
-    <img src="./img/zoo.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-green-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Зоотовары</p>
-  </div>
-
-  <div class="row-span-1 relative rounded-[10px] overflow-hidden">
-    <img src="./img/kids.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-green-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Детское питание</p>
-  </div>
-
-  <div class="col-span-2 row-span-2 relative rounded-[10px] overflow-hidden">
-    <img src="./img/meat.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-green-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Мясо, птица</p>
-  </div>
-
-  <div class="row-span-1 relative rounded-[10px] overflow-hidden">
-    <img src="./img/uneat.png" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-gradient-to-t from-green-500/80 to-transparent"></div>
-    <p class="absolute bottom-4 left-4 text-white font-bold">Непродовольственные товары</p>
-  </div>
-
-</div>
+        <section>
+          <div id="catalogrender" class="container mx-auto grid grid-cols-4 gap-7">
+        
+          </div>
         </section>
 
     </main>
@@ -215,6 +137,11 @@
     </div>
   </div>
 </footer>
+
+
+
+<script src="./js/products-data/products-data/products-data.js"></script>
+<script src="./js/categories-data.js"></script>
+<script src="./js/catalog.js"></script>
 </body>
 </html>
-<a href=""></a>

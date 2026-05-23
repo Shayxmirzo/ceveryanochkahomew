@@ -48,7 +48,7 @@
       <!-- Catalog Button -->
       <div class="bg-[#70C05B] text-white flex items-center gap-3 px-4 h-[40px] ">
   <img id="catalogBtn"  src="./img/menu.png" class="w-4 h-4 cursor-pointer" />
-  <span class="hidden lg:inline text-[16px]">Каталог</span>
+  <a href="./catalog.html" class="hidden lg:inline text-[16px]">Каталог</a>
     </div>
 
       <!-- Search -->
@@ -73,9 +73,10 @@
     <!-- Right Side -->
     <div class="hidden lg:flex items-center gap-[40px]">
       
-      <a href="./thefav.html" class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5">
+      <a href="./thefav.html" class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5 relative">
         <img src="./img/Shape (Stroke).png" class="w-6 h-6" />
         <span>Избранное</span>
+        <span id="thefavor" class="absolute -top-1 -right-2 bg-orange-500 text-white text-[10px] px-1 rounded"></span>
     </a>
 
       <div class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5">

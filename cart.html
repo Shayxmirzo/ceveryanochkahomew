@@ -32,10 +32,10 @@
     <div class="flex items-center gap-5 flex-1 max-w-[650px] mx-8">
       
       <!-- Catalog Button -->
-      <a href="./catalog.html" class="bg-[#70C05B] text-white flex items-center gap-3 px-4 h-[40px] ">
-  <img src="./img/menu.png" class="w-4 h-4" />
-  <span class="hidden lg:inline text-[16px]">Каталог</span>
-</a>
+      <div class="bg-[#70C05B] text-white flex items-center gap-3 px-4 h-[40px] ">
+  <img id="catalogBtn"  src="./img/menu.png" class="w-4 h-4 cursor-pointer" />
+  <a href="./catalog.html" class="hidden lg:inline text-[16px]">Каталог</a>
+    </div>
 
       <!-- Search -->
        <div class=" relative max-w-[400px] h-[40px] w-full">  
@@ -117,6 +117,11 @@ transform -translate-y-5 opacity-0 pointer-events-none transition-all duration-3
 </nav>
 
     </header>
+    <div id="catalogPopup" class="pt-[100px] top-0 duration-500 absolute fixed z-5 w-full bg-[white] border-b py-6 -translate-y-[100%]">
+      <div id="categories" class="container mx-auto grid gap-5 grid-cols-4 ">
+        
+      </div>
+    </div>
     <div id="loading" class="w-full flex items-center justify-center bg-white z-20 h-screen">
       <img class="max-w-[100px] w-full h-full" src="./assets/Rolling@1x-1.0s-200px-200px.svg" alt="png">
     </div>
@@ -221,6 +226,7 @@ hover:bg-[orangered] hover:scale-105 transition duration-300">
 
 
 <script src="./js/products-data/products-data/products-data.js"></script>
+<script src="./js/categories-data.js"></script>
 <script src="./js/cart.js"></script>
 </body>
 </html>

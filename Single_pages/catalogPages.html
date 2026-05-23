@@ -38,43 +38,49 @@
 </a>
 
       <!-- Search -->
-      <div class="flex items-center flex-1 h-[40px] border border-gray-300 rounded px-4">
+       <div class=" relative max-w-[400px] h-[40px] w-full">  
+        <div class="flex items-center flex-1 h-[40px] border border-gray-300 rounded px-4">
         <input 
+        id="search"
           type="text" 
           placeholder="Найти товар"
           class="flex-1 outline-none text-[14px]"
         />
         <img src="../img/search.png" class="w-4 h-4" />
       </div>
+    <div id="searchcards" class="searchcards absolute overflow-y-scroll gap-2 p-2 flex flex-col bottom-0 max-w-[400px] max-h-[400px] translate-y-full w-full rounded-md bg-white shadow-lg">
+
+    </div>
+    </div>
+    
 
     </div>
 
     <!-- Right Side -->
-    <div class="flex items-center gap-[40px]">
+    <div class="hidden lg:flex items-center gap-[40px]">
       
-      <div class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5">
+      <a href="../thefav.html" class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5">
         <img src="../img/Shape (Stroke).png" class="w-6 h-6" />
         <span>Избранное</span>
-      </div>
+    </a>
 
       <div class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5">
         <img src="../img/Frame 211.png" class="w-6 h-6" />
         <span>Продукты</span>
       </div>
 
-      <div class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5 relative">
+      <a href="../cart.html" class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5 relative">
         <img src="../img/shopping-cart.png" class="w-6 h-6" />
         <span>Корзина</span>
-        <span class="absolute -top-1 -right-2 bg-orange-500 text-white text-[10px] px-1 rounded">
-          1
+        <span id="badge" class="absolute -top-1 -right-2 bg-orange-500 text-white text-[10px] px-1 rounded">
+          
         </span>
-      </div>
+      </a>
 
       <!-- Profile -->
-      <div class="flex items-center gap-4 ml-2">
-        <img src="../img/avatar.png" class="w-10 h-10 rounded-full" />
-        <span class="text-[16px] text-gray-700">Алексей</span>
-        <img src="../img/Shape down line.png" class="w-4 h-4" />
+      <div id="profileClick" class="flex items-center gap-4 ml-2">
+        <img id="profileimg" src="../img/user.png" class="w-9 h-9 rounded-full" />
+        <span id="profilename" class="text-[16px] text-gray-700">Log in</span>
       </div>
 
     </div>

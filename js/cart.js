@@ -419,3 +419,23 @@ if(promo.value === "hello" || "12345"){
 calculatePrices(0, 0)
 })
 
+// === CATALOG PART === //
+
+let catalogBtn = document.getElementById("catalogBtn");
+let catalogPopup = document.getElementById("catalogPopup")
+let categories = document.getElementById("categories")
+
+categoriesData.map((el) =>{
+  categories.innerHTML += `
+  <a href="../Single_pages/catalogPages.html?name=${el.name}" class="flex items-center gap-2 hover:text-[orangered] duration-300 hover:text-[18px] font-bold">
+          <div class="w-[55px] h-[55px] rounded-full overflow-hidden duration-300 ">
+            <img class="w-full h-full object-cover" src="${el.imageUrl}" alt="">
+          </div>
+          ${el.name}
+        </a>
+  `
+})
+
+catalogBtn.addEventListener("click", function(){
+  catalogPopup.classList.toggle("-translate-y-[100%]")
+})

@@ -64,9 +64,10 @@
     <!-- Right Side -->
     <div class="hidden lg:flex items-center gap-[40px]">
       
-      <a href="./thefav.html" class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5">
+      <a href="./thefav.html" class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5 relative">
         <img src="./img/Shape (Stroke).png" class="w-6 h-6" />
         <span>Избранное</span>
+        <span id="thefavor" class="absolute -top-1 -right-2 bg-orange-500 text-white text-[10px] px-1 rounded"></span>
     </a>
 
       <div class="flex flex-col items-center text-[#8F8F8F] text-[12px] gap-1.5">
@@ -123,7 +124,17 @@ transform -translate-y-5 opacity-0 pointer-events-none transition-all duration-3
 </nav>
  
     </header>
-  <main class="mainn flex-1 flex flex-col gap-[100px] bg-[#FBF8EC] pt-[72px] pb-[90px]">
+  <main id="mainn" class="mainn flex-1 flex flex-col gap-[100px] bg-[#FBF8EC] pt-[100px] pb-[90px]">
+
+    <section class="py-5">
+      <div id="thefavtext" class="container max-w-[1400px] w-full mx-auto flex flex-col justify-center gap-5">
+        <h1  class="font-[Rubik] text-left font-bold text-[36px] leading-[150%] tracking-normal">The favourite products</h1>
+        <div id="favcontainer" class="container mx-auto sales max-w-[1400px] w-full mt-[50px] mx-auto grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[30px]">
+
+      </div>
+      </div>
+      
+    </section>
 
   </main>
 
@@ -167,10 +178,8 @@ transform -translate-y-5 opacity-0 pointer-events-none transition-all duration-3
 
 
 
-
-<script src="./js/thefav.js"></script>
 <script src="./js/products-data/products-data/products-data.js"></script>
-<script src="./js/owlcaro.js"></script>
+<script src="./js/thefav.js"></script>
 </body>
 </html>
 
