@@ -82,11 +82,11 @@ let main = document.querySelector(".mainn");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let budge = document.getElementById("budge");
+let budge = document.getElementById("badge");
 let bige = document.getElementById("bige");
 let selectAll = document.getElementById("selectAll");
 let deleteBtn = document.getElementById("deleteSelected");
-
+let justbehidden = document.getElementById("justbehidden");
 
 let totalp = document.getElementById("Totalprice");
 let discountnum = document.getElementById("Discountnum");
@@ -190,7 +190,6 @@ function renderCart() {
   if (cart.length === 0) {
 
     carTitle.classList.add("hidden");
-
     main.innerHTML = `
       <div class="text-center mt-20 text-[28px] font-bold text-gray-500">
         Cart is empty 🛒
@@ -201,7 +200,7 @@ function renderCart() {
   }
 
   carTitle.classList.remove("hidden");
-
+  justbehidden.classList.remove("hidden")
   cart.forEach(item => {
 
     let product = products.find(el => el.id == item.id);

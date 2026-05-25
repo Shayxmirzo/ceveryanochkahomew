@@ -16,9 +16,11 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 </head>
-<body  class="flex flex-col min-h-screen bg-[[#FBF8EC]]">
-  <div id="modal" class="fixed hidden z-30 flex justify-center items-center w-full h-screen bg-[orangered]/60">
+<body  class="flex flex-col min-h-screen bg-[#FBF8EC]">
+<div id="modal" class="fixed hidden z-30 flex justify-center items-center w-full h-screen bg-[orangered]/60">
   <div id="modalContent" class="max-w-[500px] w-full bg-[white] rounded-[40px] p-5 border">
     <h2 class="py-5 text-center text-[30px] font-bold">Log in</h2>
     <form id="formModal" class="w-full gap-4 flex flex-col " action="">
@@ -29,7 +31,8 @@
     </form>
   </div>
 </div>
-    <header class="fixed z-10 w-full">
+
+    <header class="fixed relative z-10 w-full">
      <nav class="w-full fixed z-10 flex-1 bg-white border-b border-gray-200">
   <div class="max-w-[1400px] mx-auto h-[72px] gap-[10px] flex items-center justify-between px-8 font-[Rubik]">
     
@@ -76,10 +79,10 @@
         <span id="thefavor" class="absolute -top-1 -right-2 bg-orange-500 text-white text-[10px] px-1 rounded"></span>
     </a>
 
-      <a href="./allproducts.html" class="flex flex-col items-center cursor-pointer text-[#8F8F8F] text-[12px] gap-1.5">
+      <div class="flex flex-col items-center cursor-pointer text-[#8F8F8F] text-[12px] gap-1.5">
         <img src="./img/Frame 211.png" class="w-6 h-6" />
         <span class="cursor-pointer">Продукты</span>
-      </a>
+      </div>
 
       <a href="./cart.html" class="flex flex-col cursor-pointer items-center text-[#8F8F8F] text-[12px] gap-1.5 relative">
         <img src="./img/shopping-cart.png" class="w-6 h-6" />
@@ -113,10 +116,12 @@ transform -translate-y-5 opacity-0 pointer-events-none transition-all duration-3
       <img src="./img/Frame 211.png" class="w-6 h-6" />
       <span class="text-[14px]">Продукты</span>
     </div>
- <div class="flex items-center gap-3">
+
+    <div class="flex items-center gap-3">
       <img src="./img/shopping-cart.png" class="w-6 h-6" />
       <span class="text-[14px]">Корзина</span>
     </div>
+
     <div class="flex items-center gap-3">
       <img src="./img/avatar.png" class="w-7 h-7 rounded-full" />
       <span class="text-[14px]">Алексей</span>
@@ -128,80 +133,37 @@ transform -translate-y-5 opacity-0 pointer-events-none transition-all duration-3
 </nav>
 
     </header>
-
     <div id="catalogPopup" class="pt-[100px] top-0 duration-500 absolute fixed z-5 w-full bg-[white] border-b py-6 -translate-y-[100%]">
       <div id="categories" class="container mx-auto grid gap-5 grid-cols-4 ">
         
       </div>
     </div>
 
-    <div id="loading" class="w-full flex items-center justify-center bg-white z-20 h-screen">
+
+    <div id="loading" class="w-full hidden flex items-center justify-center bg-white z-20 h-screen">
       <img class="max-w-[100px] w-full h-full" src="./assets/Rolling@1x-1.0s-200px-200px.svg" alt="png">
     </div>
 
-    <main class=" flex-1 flex flex-col gap-[30px] bg-[#FBF8EC] pt-[72px] pb-[90px] mt-[50px]">
-      <section id="justbehidden" class="">
-        <div id="carTitle" class="max-w-[1400px] mx-auto h-[72px] flex items-end justify-between font-[Rubik]">
-      <h1  class="relative inline-block font-bold text-[52px] leading-[150%] ">
-  Корзина
 
-  <span id="bige"
-    class="absolute -top-1 -right-6 min-w-[24px] h-[24px]
-           px-1 text-[12px]
-           rounded
-           bg-orange-500 text-white
-           flex items-center justify-center">
-  </span>
-</h1>
-<div class="  flex items-center gap-[20px] justify-between mb-5">
+    <main id="mainner" class="mainn hidden flex-1 flex flex-col gap-[100px] bg-[#FBF8EC] pt-[140px] py-9">
+   <section>
+    <div class="container mx-auto flex flex-col gap-[30px]">
+        <h1 class="font-[Rubik] font-bold text-[36px] leading-[150%] tracking-normal">All products with discount</h1>
+        <div id="prodiscount" class="container mx-auto grid grid-cols-4 gap-8">
 
-  
-  <label class="flex cursor-pointer items-center gap-2 text-[16px] font-semibold">
-    <input id="selectAll" type="checkbox" class="w-5 h-5 accent-green-500">
-    Select all
-  </label>
-
-
-  <button id="deleteSelected"
-    class="bg-red-500 text-white px-4 py-2 rounded-lg">
-    Delete
-  </button>
-
-</div>
         </div>
-        <div class="max-w-[1400px] mx-auto flex items-start justify-between gap-10">
+    </div>
+   </section>
+  <section>
+    <div class="container mx-auto flex flex-col gap-[30px]">
+        <h1 class="font-[Rubik] font-bold text-[36px] leading-[150%] tracking-normal">All products without discount</h1>
+        <div id="prodwithoutdis" class="container mx-auto grid grid-cols-4 gap-8">
 
-  <div class="mainn mt-[50px] flex flex-col gap-[30px] flex-1">
-  </div>
-
-  <div id="thePricesh" class="max-w-[400px] bg-[#F2E8C9] rounded-sm w-full p-5 flex flex-col gap-3 mt-[50px]">
-    <h2 class="text-[18px] font-bold text-[#6B6257]">Total price: <span id="Totalprice"></span></h2>
-    <h1 class="text-[16px] font-bold text-balck">Discount: <span id="Discountnum"></span></h1>
-    <h1 class="text-[22px] font-bold text-[orangered]">Total: <span id="Total"></span></h1>
-
-   <div class="flex flex-col gap-1">
-  <label class="text-[20px] font-bold" for="promo">Promocode</label>
-
-  <div class="flex ">
-    <input class="border w-[240px] px-2 py-1" id="promo" type="text">
-
-    <button id="promo-check" class="border bg-[orangered] w-[60px] cursor-pointer">
-      <h1 class="text-white font-bold">GET</h1>
-    </button>
-  </div>
-</div >
-<button class="max-w-[200px] bg-green-500 font-bold text-white px-4 py-2 rounded cursor-pointer
-hover:bg-[orangered] hover:scale-105 transition duration-300">
-  Make a purchase
-</button>
-  </div>
-
-</div>
-        
-      </section>
-  
-        
+        </div>
+    </div>
+   </section>
     </main>
+
 
     <footer class="bg-[#F9F4E2] bg-[url('./img/bg.png')] max-h-[126px] h-[126px] bg-cover bg-center bg-no-repeat w-full py-6 px-8 ">
   <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-6">
@@ -240,10 +202,15 @@ hover:bg-[orangered] hover:scale-105 transition duration-300">
 </footer>
 
 
+
+
+
+
 <script src="./js/products-data/products-data/products-data.js"></script>
 <script src="./js/categories-data.js"></script>
-<script src="./js/cart.js"></script>
+<script src="./js/allproducts.js"></script>
 <script src="./js/profile.js"></script>
 </body>
 </html>
+
 
